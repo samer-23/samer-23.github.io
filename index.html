@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Samer Portfolio</title>
+<meta name="description" content="Samer, data science and software development. Machine learning in Python, SQL and database design in MySQL, object-oriented design in C/C++.">
+<meta property="og:title" content="Samer Portfolio">
+<meta property="og:description" content="Data science and software development. Machine learning in Python, MySQL database design, object-oriented design.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Idea: the palette is the 11 color classes from the RGB classifier project. The hero is a live scatter of those classes, and each project takes one of them as its accent. */
+:root {
+  --paper: #f8f7fc;
+  --card: #ffffff;
+  --ink: #14172b;
+  --muted: #576078;
+  --line: #e3e3ef;
+  --blue: #2f6df6;
+  --green: #17a34a;
+  --pink: #e8348f;
+  --orange: #f26a1b;
+  --purple: #8b4be3;
+  --yellow: #f5b301;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --shadow: 0 1px 2px rgba(20,23,43,.05), 0 12px 32px -12px rgba(20,23,43,.18);
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+a { color: var(--blue); }
+a:focus-visible, button:focus-visible, .btn:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 8px; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 22px; }
+code { font-family: var(--font-mono); font-size: .86em; background: #eef0fb; padding: 2px 6px; border-radius: 6px; }
+
+/* Nav */
+.top { position: sticky; top: 0; z-index: 20; background: rgba(248,247,252,.82); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 24px; padding-top: 12px; padding-bottom: 12px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 800; font-size: 1.25rem; color: var(--ink); text-decoration: none; }
+.brand i { display: inline-grid; grid-template-columns: repeat(2, 9px); gap: 3px; }
+.brand i b { width: 9px; height: 9px; border-radius: 50%; display: block; }
+.top nav { display: flex; flex-wrap: wrap; gap: 2px 6px; }
+.top nav a { color: var(--muted); text-decoration: none; font-weight: 600; font-size: .94rem; padding: 6px 12px; border-radius: 999px; transition: background .2s, color .2s; }
+.top nav a:hover { background: #ecebf8; color: var(--ink); }
+
+/* Hero */
+.hero { position: relative; overflow: hidden; }
+.hero::before, .hero::after { content: ""; position: absolute; border-radius: 50%; filter: blur(70px); opacity: .55; z-index: 0; pointer-events: none; }
+.hero::before { width: 420px; height: 420px; background: #ffd9a0; top: -140px; right: 6%; }
+.hero::after { width: 300px; height: 300px; background: #bfe9d0; bottom: 24px; left: -90px; }
+.hero .wrap { position: relative; z-index: 1; display: grid; grid-template-columns: 1.1fr .9fr; gap: 36px; align-items: center; padding-top: 64px; padding-bottom: 56px; }
+.eyebrow { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: .82rem; color: var(--muted); background: var(--card); border: 1px solid var(--line); padding: 6px 12px; border-radius: 999px; margin-bottom: 20px; }
+.eyebrow span { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(23,163,74,.18); }
+h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(3.6rem, 11vw, 6.6rem); line-height: .95; letter-spacing: -.035em; margin: 0 0 14px; }
+h1 em { font-style: normal; background: linear-gradient(100deg, var(--blue) 0%, var(--pink) 55%, var(--orange) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.role { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.25rem, 3vw, 1.7rem); margin: 0 0 18px; }
+.lede { max-width: 58ch; margin: 0 0 26px; color: var(--muted); font-size: 1.07rem; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 12px; border: 2px solid var(--ink); background: var(--ink); color: #fff; text-decoration: none; font-weight: 700; font-size: .97rem; transition: transform .18s, box-shadow .18s; }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 10px 22px -10px rgba(20,23,43,.5); }
+.btn.alt { background: var(--card); color: var(--ink); }
+.email-line { margin: 16px 0 0; font-family: var(--font-mono); font-size: .88rem; color: var(--muted); overflow-wrap: anywhere; }
+
+.plot { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--shadow); padding: 14px; }
+.plot canvas { display: block; width: 100%; aspect-ratio: 1 / 1; border-radius: 14px; background:
+  radial-gradient(circle at 1px 1px, #dcdcee 1px, transparent 1.4px) 0 0 / 22px 22px, #fcfbff; touch-action: pan-y; }
+.plot figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; margin: 10px 4px 2px; font-family: var(--font-mono); font-size: .76rem; color: var(--muted); }
+
+/* Stats */
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; padding: 8px 0 52px; }
+.stat { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 18px 20px; box-shadow: var(--shadow); border-top: 5px solid var(--c, var(--blue)); }
+.stat strong { display: block; font-family: var(--font-display); font-weight: 800; font-size: 2.3rem; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.stat span { font-size: .88rem; color: var(--muted); }
+
+/* Sections */
+section { padding: 48px 0; }
+.sec-head { display: flex; align-items: baseline; gap: 14px; margin: 0 0 26px; }
+h2 { font-family: var(--font-display); font-weight: 800; font-size: clamp(2rem, 5vw, 2.7rem); letter-spacing: -.02em; line-height: 1.05; margin: 0; }
+.sec-head::after { content: ""; flex: 1; height: 3px; border-radius: 3px; background: linear-gradient(90deg, var(--line), transparent); }
+
+/* Skills */
+.skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.skill { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 20px; box-shadow: var(--shadow); transition: transform .2s; }
+.skill:hover { transform: translateY(-4px); }
+.skill h3 { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-size: 1.15rem; margin: 0 0 12px; }
+.skill h3 i { width: 12px; height: 12px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 5px color-mix(in srgb, var(--c) 18%, transparent); }
+.tags { display: flex; flex-wrap: wrap; gap: 7px; margin: 0; padding: 0; list-style: none; }
+.tags li { font-size: .84rem; font-weight: 600; padding: 4px 11px; border-radius: 999px; background: color-mix(in srgb, var(--c) 12%, white); color: color-mix(in srgb, var(--c) 80%, #14172b); border: 1px solid color-mix(in srgb, var(--c) 26%, white); }
+
+/* Projects */
+.project { --c: var(--blue); position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 24px; box-shadow: var(--shadow); padding: 30px; margin-bottom: 26px; overflow: hidden; }
+.project::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 8px; background: var(--c); }
+.project.green { --c: var(--green); } .project.pink { --c: var(--pink); } .project.orange { --c: var(--orange); } .project.purple { --c: var(--purple); }
+.p-head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 14px 24px; margin-bottom: 14px; }
+.p-head h3 { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.5rem, 3.6vw, 2rem); line-height: 1.1; margin: 0 0 10px; letter-spacing: -.015em; text-wrap: balance; }
+.chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0; padding: 0; list-style: none; }
+.chips li { font-family: var(--font-mono); font-size: .76rem; padding: 4px 10px; border-radius: 8px; background: color-mix(in srgb, var(--c) 11%, white); color: color-mix(in srgb, var(--c) 78%, #14172b); }
+.badge { text-align: right; padding: 10px 16px; border-radius: 16px; background: color-mix(in srgb, var(--c) 10%, white); border: 1px solid color-mix(in srgb, var(--c) 28%, white); }
+.badge strong { display: block; font-family: var(--font-display); font-weight: 800; font-size: 1.9rem; line-height: 1; color: color-mix(in srgb, var(--c) 85%, #14172b); font-variant-numeric: tabular-nums; }
+.badge span { font-size: .78rem; color: var(--muted); }
+.summary { margin: 0 0 14px; font-weight: 500; font-size: 1.05rem; max-width: 70ch; }
+.project ul.points { margin: 0 0 22px; padding: 0; list-style: none; display: grid; gap: 10px; max-width: 74ch; }
+.points li { position: relative; padding-left: 26px; color: #2a3048; }
+.points li::before { content: ""; position: absolute; left: 4px; top: .6em; width: 9px; height: 9px; border-radius: 50%; background: var(--c); }
+.figs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.figs.one { grid-template-columns: minmax(0, 580px); }
+figure { margin: 0; }
+.zoom { display: block; width: 100%; padding: 10px; border: 1px solid var(--line); border-radius: 14px; background: #fff; cursor: zoom-in; transition: transform .2s, box-shadow .2s; }
+.zoom:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.zoom img { display: block; width: 100%; height: auto; }
+figcaption.cap { margin-top: 8px; font-size: .84rem; color: var(--muted); }
+
+/* Education */
+.edu { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.edu div { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 22px; box-shadow: var(--shadow); border-left: 8px solid var(--c); }
+.edu strong { display: block; font-family: var(--font-display); font-size: 1.25rem; line-height: 1.2; margin-bottom: 4px; }
+.edu span { color: var(--muted); }
+
+/* Contact */
+.contact-card { position: relative; overflow: hidden; background: var(--ink); color: #fff; border-radius: 28px; padding: 44px 36px; }
+.contact-card h2 { color: #fff; margin-bottom: 12px; }
+.contact-card p { max-width: 56ch; margin: 0 0 24px; color: #c9cde2; }
+.contact-card .btn { background: #fff; color: var(--ink); border-color: #fff; }
+.contact-card .btn.alt { background: transparent; color: #fff; border-color: #6d7396; }
+.contact-card .email-line { color: #aab0cb; }
+.contact-card .dots { position: absolute; right: -20px; top: -20px; display: grid; grid-template-columns: repeat(6, 22px); gap: 10px; opacity: .9; }
+.contact-card .dots b { width: 22px; height: 22px; border-radius: 50%; background: var(--c); display: block; }
+
+footer { padding: 30px 0 56px; color: var(--muted); font-size: .88rem; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+
+/* Lightbox */
+dialog { border: 0; padding: 0; background: transparent; max-width: min(1100px, 94vw); width: 100%; }
+dialog::backdrop { background: rgba(20,23,43,.72); backdrop-filter: blur(4px); }
+dialog .panel { background: #fff; border-radius: 18px; padding: 14px; position: relative; }
+dialog img { display: block; width: 100%; max-height: 80vh; object-fit: contain; }
+dialog p { margin: 10px 4px 2px; color: var(--muted); font-size: .9rem; }
+dialog button { position: absolute; top: 10px; right: 10px; width: 38px; height: 38px; border-radius: 50%; border: 0; background: var(--ink); color: #fff; font-size: 1.2rem; cursor: pointer; }
+
+@media (max-width: 860px) {
+  .hero .wrap { grid-template-columns: 1fr; padding-top: 40px; }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .skills { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  body { font-size: 16px; }
+  .skills, .edu, .figs { grid-template-columns: 1fr; }
+  .project { padding: 22px 18px 22px 24px; }
+  .badge { text-align: left; }
+  .contact-card { padding: 32px 22px; }
+  .contact-card .dots { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Samer, back to top">
+      <i aria-hidden="true"><b style="background:var(--green)"></b><b style="background:var(--blue)"></b><b style="background:var(--pink)"></b><b style="background:var(--yellow)"></b></i>
+      Samer
+    </a>
+    <nav aria-label="Sections">
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow"><span></span>Alexandria, Egypt</div>
+        <h1>Hi, I'm <em>Samer</em></h1>
+        <p class="role">Data Science &amp; Software Development</p>
+        <p class="lede">Computer &amp; Communication Engineering student at Alexandria University (expected 2028), currently completing a Data Science internship through DEPI and working freelance as a data scientist. My background spans applied machine learning in Python, SQL and database design in MySQL, and object-oriented software design in C/C++.</p>
+        <div class="actions">
+          <a class="btn" href="mailto:samerehab948@gmail.com">Email me</a>
+          <a class="btn alt" href="https://www.linkedin.com/in/samer-el-monier-70740a344">LinkedIn</a>
+          <a class="btn alt" href="https://github.com/samer-23">GitHub</a>
+        </div>
+        <p class="email-line">samerehab948@gmail.com</p>
+      </div>
+      <figure class="plot" style="margin:0">
+        <canvas id="dots" width="480" height="480" role="img" aria-label="Animated scatter of colored points grouped into 11 color classes, like the RGB classifier dataset. Move the pointer over it to push the points."></canvas>
+        <figcaption><span>11 color classes</span><span>KNN, k = 5</span><span>84.8% accuracy</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat" style="--c:var(--green)"><strong>84.8%</strong><span>KNN test accuracy on the RGB color classifier</span></div>
+      <div class="stat" style="--c:var(--blue)"><strong>~5,000</strong><span>labeled samples across 11 classes</span></div>
+      <div class="stat" style="--c:var(--pink)"><strong>4</strong><span>projects: ML, SQL and OOP</span></div>
+      <div class="stat" style="--c:var(--orange)"><strong>2028</strong><span>B.Sc. expected, Alexandria University</span></div>
+    </div>
+
+    <section id="skills">
+      <div class="sec-head"><h2>Skills</h2></div>
+      <div class="skills">
+        <div class="skill" style="--c:var(--green)"><h3><i></i>Data Science</h3><ul class="tags"><li>Python</li><li>pandas</li><li>scikit-learn</li><li>NumPy</li><li>matplotlib</li></ul></div>
+        <div class="skill" style="--c:var(--pink)"><h3><i></i>ML Techniques</h3><ul class="tags"><li>KNN</li><li>Logistic Regression</li><li>Linear Regression</li><li>Gradient Descent (from scratch)</li><li>Model Evaluation</li></ul></div>
+        <div class="skill" style="--c:var(--orange)"><h3><i></i>Databases</h3><ul class="tags"><li>MySQL</li><li>SQL joins</li><li>Views</li><li>Stored procedures</li><li>DCL/TCL</li><li>Schema design</li></ul></div>
+        <div class="skill" style="--c:var(--purple)"><h3><i></i>Software Development</h3><ul class="tags"><li>C++</li><li>C</li><li>Object-Oriented Design</li><li>VHDL</li><li>MATLAB</li></ul></div>
+        <div class="skill" style="--c:var(--yellow)"><h3><i></i>Statistics</h3><ul class="tags"><li>MSE and estimation</li><li>Confidence intervals</li><li>Probability distributions</li></ul></div>
+        <div class="skill" style="--c:var(--blue)"><h3><i></i>Tools</h3><ul class="tags"><li>Jupyter</li><li>Git</li><li>GitHub</li><li>VS Code</li><li>MySQL Workbench</li></ul></div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="sec-head"><h2>Projects</h2></div>
+
+      <article class="project green">
+        <div class="p-head">
+          <div>
+            <h3>RGB Color Classifier</h3>
+            <ul class="chips" aria-label="Stack"><li>Python</li><li>pandas</li><li>scikit-learn (KNN)</li></ul>
+          </div>
+          <div class="badge"><strong>84.8%</strong><span>test accuracy, weighted F1 0.85</span></div>
+        </div>
+        <p class="summary">Supervised classification model that predicts a color label directly from RGB pixel values.</p>
+        <ul class="points">
+          <li>Loaded and explored a labeled RGB dataset (about 5,000 samples across 11 color classes) and checked the class distribution before modeling.</li>
+          <li>Split the data 80/20 with stratified sampling to preserve class balance in the train and test sets.</li>
+          <li>Trained a K-Nearest Neighbors classifier (k=5), reaching 84.8% accuracy on the test set (weighted F1 = 0.85).</li>
+          <li>Wrapped the model in a reusable <code>predict_color()</code> function and validated it against unseen sample pixels.</li>
+        </ul>
+        <div class="figs">
+          <figure><button class="zoom" type="button" data-cap="Class distribution in the full dataset"><img src="rgb-class-distribution.png" alt="Bar chart of sample counts per color class in the RGB dataset, with green and blue the largest classes" width="1280" height="600" loading="lazy"></button><figcaption class="cap">Class distribution in the full dataset</figcaption></figure>
+          <figure><button class="zoom" type="button" data-cap="Per-class F1-score of the trained model"><img src="knn-f1-by-class.png" alt="Horizontal bar chart of KNN F1-score for each color class" width="1280" height="520" loading="lazy"></button><figcaption class="cap">Per-class F1-score of the trained model</figcaption></figure>
+        </div>
+      </article>
+
+      <article class="project pink">
+        <div class="p-head">
+          <div>
+            <h3>Price &amp; Outcome Prediction</h3>
+            <ul class="chips" aria-label="Stack"><li>Python</li><li>pandas</li><li>NumPy</li><li>scikit-learn</li><li>matplotlib</li></ul>
+          </div>
+          <div class="badge"><strong>2 models</strong><span>plus gradient descent from scratch</span></div>
+        </div>
+        <p class="summary">Two-part modeling task covering regression and classification workflows on separate datasets, plus a from-scratch implementation of the core optimization algorithm behind linear regression.</p>
+        <ul class="points">
+          <li><strong>House price regression:</strong> encoded categorical features (Garage, ordinal Condition, one-hot Location), scaled inputs, and trained a linear regression model. Evaluated with MSE/RMSE and an actual-vs-predicted scatter plot, and correctly identified that price had no strong linear relationship with the given features rather than forcing a misleading fit.</li>
+          <li><strong>Pass/fail classification:</strong> trained a logistic regression model on attendance, homework, midterm score, and study hours to predict student outcomes. Evaluated with accuracy, precision, recall, F1-score, and a confusion matrix, achieving perfect classification on a 20-sample test set.</li>
+          <li><strong>Bonus:</strong> implemented batch gradient descent from scratch using only NumPy (no scikit-learn) to optimize a linear regression model's weights and bias, demonstrating the underlying math behind the library implementation.</li>
+        </ul>
+        <div class="figs">
+          <figure><button class="zoom" type="button" data-cap="Actual vs. predicted house prices (regression)"><img src="house-price-actual-vs-predicted.png" alt="Scatter plot of actual versus predicted house prices with predictions in a flat band and a diagonal line for perfect prediction" width="614" height="623" loading="lazy"></button><figcaption class="cap">Actual vs. predicted house prices (regression)</figcaption></figure>
+          <figure><button class="zoom" type="button" data-cap="Confusion matrix, pass/fail classifier (20 test samples, 100% accuracy)"><img src="pass-fail-confusion-matrix.png" alt="Confusion matrix for the pass/fail classifier: 8 fail and 12 pass predicted correctly, no errors" width="409" height="347" loading="lazy"></button><figcaption class="cap">Confusion matrix, pass/fail classifier (20 test samples, 100% accuracy)</figcaption></figure>
+        </div>
+      </article>
+
+      <article class="project orange">
+        <div class="p-head">
+          <div>
+            <h3>MySQL Database Design and Queries</h3>
+            <ul class="chips" aria-label="Stack"><li>MySQL</li><li>MySQL Workbench</li></ul>
+          </div>
+        </div>
+        <p class="summary">Relational database work covering schema design, querying, and server-side logic in MySQL.</p>
+        <ul class="points">
+          <li>Designed relational schemas and wrote queries using multiple join types.</li>
+          <li>Built stored procedures and debugged logic errors, including <code>ROW_COUNT()</code> behavior and parameter/column naming collisions.</li>
+          <li>Created views and applied DCL and TCL commands.</li>
+        </ul>
+      </article>
+
+      <article class="project purple">
+        <div class="p-head">
+          <div>
+            <h3>School Management System</h3>
+            <ul class="chips" aria-label="Stack"><li>Python</li><li>Object-Oriented Programming</li></ul>
+          </div>
+        </div>
+        <p class="summary">Object-oriented system modeling Teacher, Principal, and Student entities with inheritance, persistent record-keeping, and role verification.</p>
+        <ul class="points">
+          <li>Designed a <strong>Principal</strong> class that inherits from <strong>Teacher</strong>, extending its attributes and overriding <code>display()</code> and <code>write_to_file()</code> while reusing parent logic via <code>super()</code>.</li>
+          <li>Implemented file-based persistence: each class writes its records to disk and appends updates (for example salary or grade changes) without overwriting prior entries.</li>
+          <li>Built role-verification methods (<code>if_teacher</code>, <code>if_principal</code>, <code>if_student</code>) that cross-check an instance against stored records, including a school-match condition for principals.</li>
+          <li>Structured the codebase with a clear entry point and a demo run (<code>__main__</code>) that exercises every class and method against sample data.</li>
+        </ul>
+        <div class="figs one">
+          <figure><button class="zoom" type="button" data-cap="Class structure: Principal inherits Teacher; Student is independent; all three persist to file"><img src="school-class-structure.png" alt="Class diagram: Principal inherits from Teacher, Student is an independent class, and all three read and write text files" width="1043" height="628" loading="lazy"></button><figcaption class="cap">Class structure: Principal inherits Teacher; Student is independent; all three persist to file</figcaption></figure>
+        </div>
+      </article>
+    </section>
+
+    <section id="education">
+      <div class="sec-head"><h2>Education</h2></div>
+      <div class="edu">
+        <div style="--c:var(--blue)"><strong>B.Sc. in Computer &amp; Communication Engineering</strong><span>Alexandria University, expected 2028</span></div>
+        <div style="--c:var(--green)"><strong>Data Science Internship</strong><span>DEPI (Digital Egypt Pioneers Initiative)</span></div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="contact-card">
+        <div class="dots" aria-hidden="true">
+          <b style="--c:var(--green)"></b><b style="--c:var(--blue)"></b><b style="--c:var(--pink)"></b><b style="--c:var(--yellow)"></b><b style="--c:var(--orange)"></b><b style="--c:var(--purple)"></b>
+          <b style="--c:var(--purple)"></b><b style="--c:var(--green)"></b><b style="--c:var(--blue)"></b><b style="--c:var(--pink)"></b><b style="--c:var(--yellow)"></b><b style="--c:var(--orange)"></b>
+        </div>
+        <h2>Let's work together</h2>
+        <p>I work with clients as a freelance data scientist. Send a short description of your project and I will reply by email.</p>
+        <div class="actions">
+          <a class="btn" href="mailto:samerehab948@gmail.com">Email me</a>
+          <a class="btn alt" href="https://www.linkedin.com/in/samer-el-monier-70740a344">LinkedIn</a>
+          <a class="btn alt" href="https://github.com/samer-23">GitHub</a>
+        </div>
+        <p class="email-line">samerehab948@gmail.com</p>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap"><span>Samer, Alexandria, Egypt</span><a href="#top">Back to top</a></div>
+</footer>
+
+<dialog id="lb" aria-label="Enlarged figure">
+  <div class="panel">
+    <button type="button" id="lb-close" aria-label="Close">&times;</button>
+    <img id="lb-img" alt="">
+    <p id="lb-cap"></p>
+  </div>
+</dialog>
+
+<script>
+(function () {
+  /* Hero scatter: 11 clusters, one per color class of the RGB classifier. */
+  var canvas = document.getElementById('dots');
+  var ctx = canvas.getContext('2d');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var classes = [
+    ['#17a34a', 0.22, 0.24], ['#2f6df6', 0.56, 0.18], ['#e8348f', 0.82, 0.30], ['#8b4be3', 0.74, 0.58],
+    ['#92400e', 0.46, 0.46], ['#f5b301', 0.18, 0.56], ['#ef4444', 0.36, 0.80], ['#f26a1b', 0.64, 0.82],
+    ['#94a3b8', 0.12, 0.84], ['#14172b', 0.90, 0.84], ['#ffffff', 0.50, 0.64]
+  ];
+  var pts = [], size = 480, dpr = 1, mouse = { x: -999, y: -999 };
+  var seed = 7;
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  function gauss() { return (rnd() + rnd() + rnd() + rnd() - 2) / 2; }
+  classes.forEach(function (c, ci) {
+    var n = ci < 2 ? 40 : 22;
+    for (var i = 0; i < n; i++) {
+      pts.push({ color: c[0], hx: c[1] + gauss() * 0.12, hy: c[2] + gauss() * 0.12, x: 0, y: 0, ph: rnd() * 6.28, r: 3.5 + rnd() * 3 });
+    }
+  });
+  pts.forEach(function (p) { p.hx = Math.min(.97, Math.max(.03, p.hx)); p.hy = Math.min(.97, Math.max(.03, p.hy)); p.x = p.hx; p.y = p.hy; });
+
+  function resize() {
+    var rect = canvas.getBoundingClientRect();
+    size = Math.max(200, Math.round(rect.width));
+    dpr = window.devicePixelRatio || 1;
+    canvas.width = size * dpr; canvas.height = size * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function draw(t) {
+    ctx.clearRect(0, 0, size, size);
+    for (var i = 0; i < pts.length; i++) {
+      var p = pts[i];
+      var tx = p.hx + (reduce ? 0 : Math.sin(t / 1400 + p.ph) * 0.008);
+      var ty = p.hy + (reduce ? 0 : Math.cos(t / 1700 + p.ph) * 0.008);
+      var px = tx * size, py = ty * size;
+      var dx = px - mouse.x, dy = py - mouse.y, d = Math.sqrt(dx * dx + dy * dy), R = size * 0.2;
+      var tgtx = px, tgty = py;
+      if (d < R && d > 0.01) { var f = (1 - d / R) * size * 0.09; tgtx += dx / d * f; tgty += dy / d * f; }
+      p.x += (tgtx / size - p.x) * 0.12; p.y += (tgty / size - p.y) * 0.12;
+      ctx.beginPath(); ctx.arc(p.x * size, p.y * size, p.r, 0, 6.2832);
+      ctx.fillStyle = p.color; ctx.fill();
+      if (p.color === '#ffffff') { ctx.strokeStyle = '#c9cce0'; ctx.lineWidth = 1.2; ctx.stroke(); }
+    }
+  }
+  function loop(t) { draw(t); requestAnimationFrame(loop); }
+  resize();
+  window.addEventListener('resize', resize);
+  canvas.addEventListener('pointermove', function (e) { var r = canvas.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
+  canvas.addEventListener('pointerleave', function () { mouse.x = mouse.y = -999; });
+  if (reduce) { draw(0); } else { requestAnimationFrame(loop); }
+
+  /* Lightbox */
+  var dlg = document.getElementById('lb');
+  var img = document.getElementById('lb-img');
+  var cap = document.getElementById('lb-cap');
+  document.querySelectorAll('.zoom').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var i = b.querySelector('img');
+      img.src = i.currentSrc || i.src; img.alt = i.alt; cap.textContent = b.getAttribute('data-cap') || '';
+      if (dlg.showModal) { dlg.showModal(); }
+    });
+  });
+  document.getElementById('lb-close').addEventListener('click', function () { dlg.close(); });
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) { dlg.close(); } });
+})();
+</script>
+</body>
+</html>
